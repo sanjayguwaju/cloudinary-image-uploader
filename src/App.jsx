@@ -17,12 +17,12 @@ function App() {
 
     const formData = new FormData();
     formData.append("file", selectedFile);
-    formData.append("upload_preset", "g82b49bl");
-    formData.append("cloud_name", "dvtw2zpbt");
+    formData.append("upload_preset", process.env.UPLOAD_PRESET);
+    formData.append("cloud_name", process.env.CLOUD_NAME);
 
     try {
       const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/dvtw2zpbt/image/upload",
+        process.env.CLOUDINARY_UPLOAD_API,
         formData
       );
       setImageUrl(response.data.secure_url);
